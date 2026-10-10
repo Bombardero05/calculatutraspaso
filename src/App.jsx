@@ -2,18 +2,18 @@ import { useState } from 'react';
 import { CCAA_DATA } from './data/ccaaData';
 import { Car, Bike, Calculator, Check, Copy, Shield, FileText } from 'lucide-react';
 
-// Ordenamos alfabéticamente las Comunidades Autónomas por su nombre
+
 const SORTED_CCAA = [...CCAA_DATA].sort((a, b) => a.name.localeCompare(b.name, 'es'));
 
 export default function App() {
   const [vehicleType, setVehicleType] = useState('coche');
-  // Selecciona por defecto la primera CCAA alfabéticamente (Andalucía)
+
   const [ccaaId, setCcaaId] = useState(SORTED_CCAA[0].id);
-  // Estado vacío por defecto para que 7500 sea solo un placeholder que no afecta el cálculo
+
   const [price, setPrice] = useState('');
   const [copied, setCopied] = useState(false);
 
-  // Estado inicial del cálculo
+
   const [result, setResult] = useState({
     itpTax: 0,
     totalCost: 55.70,
@@ -22,10 +22,10 @@ export default function App() {
     calculated: false
   });
 
-  // Tasa fija DGT instantánea según selección de vehículo
+
   const dgtFee = vehicleType === 'ciclomotor' ? 27.57 : 55.70;
 
-  // Manejador del botón "Calcular Traspaso"
+
   const handleCalculate = (e) => {
     e?.preventDefault();
     const selectedCcaa = SORTED_CCAA.find((c) => c.id === ccaaId) || SORTED_CCAA[0];
@@ -52,7 +52,6 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-100 text-slate-900 font-sans flex flex-col justify-between">
       
-      {/* Header */}
       <header className="bg-blue-950 text-white shadow-md">
         <div className="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
@@ -67,10 +66,8 @@ export default function App() {
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
         
-        {/* TÍTULO PRINCIPAL */}
         <div className="text-center mb-8">
           <h1 
             style={{ color: '#0f172a' }} 
@@ -85,7 +82,6 @@ export default function App() {
 
         <div className="grid md:grid-cols-12 gap-8">
           
-          {/* Formulario */}
           <section className="md:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
             
             <h2 
@@ -98,7 +94,6 @@ export default function App() {
 
             <form onSubmit={handleCalculate} className="space-y-5">
               
-              {/* Seleccionar Tipo de Vehículo */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
                   Tipo de Vehículo
@@ -126,7 +121,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Comunidad Autónoma (Ordenada Alfabéticamente) */}
               <div>
                 <label htmlFor="ccaa" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                   Comunidad Autónoma del Comprador
@@ -145,7 +139,6 @@ export default function App() {
                 </select>
               </div>
 
-              {/* Precio de Venta (7500 como placeholder de sugerencia) */}
               <div>
                 <label htmlFor="price" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                   Precio Acordado de Venta (€)
@@ -165,7 +158,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* BOTÓN DE CÁLCULO */}
               <button
                 type="submit"
                 className="w-full bg-blue-900 hover:bg-blue-950 text-white font-bold py-3.5 px-4 rounded-xl shadow-md transition duration-150 ease-in-out flex items-center justify-center space-x-2 text-sm cursor-pointer mt-2"
@@ -177,7 +169,6 @@ export default function App() {
             </form>
           </section>
 
-          {/* Resultado y Monetización */}
           <section className="md:col-span-5 flex flex-col space-y-4">
             
             <div className="bg-slate-950 text-white p-6 rounded-2xl shadow-lg border border-slate-800 flex flex-col justify-between flex-grow">
@@ -215,7 +206,6 @@ export default function App() {
               </button>
             </div>
 
-            {/* Banner Afiliado */}
             <div className="bg-gradient-to-br from-blue-50 to-slate-100 border border-blue-200 p-4 rounded-2xl shadow-sm">
               <div className="flex items-start space-x-3">
                 <Shield className="w-6 h-6 text-blue-900 flex-shrink-0 mt-0.5" />
@@ -239,7 +229,6 @@ export default function App() {
 
       </main>
 
-      {/* Footer */}
       <footer className="bg-white border-t border-slate-200 text-center py-4 text-xs text-slate-600 font-medium">
         <p>© 2026 CalculaTuTraspaso.es — Herramienta informativa no vinculante.</p>
       </footer>
